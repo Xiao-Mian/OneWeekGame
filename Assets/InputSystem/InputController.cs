@@ -28,9 +28,27 @@ public partial class @InputController : IInputActionCollection2, IDisposable
             ""id"": ""29e582bf-4a7d-4382-a1ba-768406249219"",
             ""actions"": [
                 {
-                    ""name"": ""jump"",
+                    ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""91feff51-437f-48ed-8689-61dd934b6aa0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""8f51be88-0ce1-4d62-9865-06ce267e2037"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""5cb20c5b-9d3a-457b-b746-9e41224624d9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -45,7 +63,51 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""jump"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""5266cdee-d580-4a4c-8aea-17bf3e230f20"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""3fd6b74d-c8d6-417e-8512-f8a7ac72bf99"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""47ed05aa-a61b-450f-934b-ecaf0d4d1a80"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0246a041-e970-42e1-a308-70a01fd608c0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -56,7 +118,9 @@ public partial class @InputController : IInputActionCollection2, IDisposable
 }");
         // PlayerMap
         m_PlayerMap = asset.FindActionMap("PlayerMap", throwIfNotFound: true);
-        m_PlayerMap_jump = m_PlayerMap.FindAction("jump", throwIfNotFound: true);
+        m_PlayerMap_Jump = m_PlayerMap.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerMap_Move = m_PlayerMap.FindAction("Move", throwIfNotFound: true);
+        m_PlayerMap_Pause = m_PlayerMap.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -116,12 +180,16 @@ public partial class @InputController : IInputActionCollection2, IDisposable
     // PlayerMap
     private readonly InputActionMap m_PlayerMap;
     private IPlayerMapActions m_PlayerMapActionsCallbackInterface;
-    private readonly InputAction m_PlayerMap_jump;
+    private readonly InputAction m_PlayerMap_Jump;
+    private readonly InputAction m_PlayerMap_Move;
+    private readonly InputAction m_PlayerMap_Pause;
     public struct PlayerMapActions
     {
         private @InputController m_Wrapper;
         public PlayerMapActions(@InputController wrapper) { m_Wrapper = wrapper; }
-        public InputAction @jump => m_Wrapper.m_PlayerMap_jump;
+        public InputAction @Jump => m_Wrapper.m_PlayerMap_Jump;
+        public InputAction @Move => m_Wrapper.m_PlayerMap_Move;
+        public InputAction @Pause => m_Wrapper.m_PlayerMap_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -131,16 +199,28 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerMapActionsCallbackInterface != null)
             {
-                @jump.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnJump;
-                @jump.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnJump;
-                @jump.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnJump;
+                @Jump.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnJump;
+                @Move.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnMove;
+                @Pause.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerMapActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @jump.started += instance.OnJump;
-                @jump.performed += instance.OnJump;
-                @jump.canceled += instance.OnJump;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -148,5 +228,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
     public interface IPlayerMapActions
     {
         void OnJump(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

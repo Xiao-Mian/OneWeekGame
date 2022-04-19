@@ -6,9 +6,27 @@
             "id": "29e582bf-4a7d-4382-a1ba-768406249219",
             "actions": [
                 {
-                    "name": "jump",
+                    "name": "Jump",
                     "type": "Button",
                     "id": "91feff51-437f-48ed-8689-61dd934b6aa0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "8f51be88-0ce1-4d62-9865-06ce267e2037",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "5cb20c5b-9d3a-457b-b746-9e41224624d9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -23,7 +41,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "jump",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "5266cdee-d580-4a4c-8aea-17bf3e230f20",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "3fd6b74d-c8d6-417e-8512-f8a7ac72bf99",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "47ed05aa-a61b-450f-934b-ecaf0d4d1a80",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0246a041-e970-42e1-a308-70a01fd608c0",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
