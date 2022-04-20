@@ -62,6 +62,15 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""fc90e124-c212-4f79-bb2d-41101673600e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -130,6 +139,17 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                     ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""580d0981-53a6-4cbe-9357-d04031204131"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -142,6 +162,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         m_PlayerMap_Move = m_PlayerMap.FindAction("Move", throwIfNotFound: true);
         m_PlayerMap_Pause = m_PlayerMap.FindAction("Pause", throwIfNotFound: true);
         m_PlayerMap_Restart = m_PlayerMap.FindAction("Restart", throwIfNotFound: true);
+        m_PlayerMap_Dash = m_PlayerMap.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,6 +226,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMap_Move;
     private readonly InputAction m_PlayerMap_Pause;
     private readonly InputAction m_PlayerMap_Restart;
+    private readonly InputAction m_PlayerMap_Dash;
     public struct PlayerMapActions
     {
         private @InputController m_Wrapper;
@@ -213,6 +235,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_PlayerMap_Move;
         public InputAction @Pause => m_Wrapper.m_PlayerMap_Pause;
         public InputAction @Restart => m_Wrapper.m_PlayerMap_Restart;
+        public InputAction @Dash => m_Wrapper.m_PlayerMap_Dash;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -234,6 +257,9 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 @Restart.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnRestart;
                 @Restart.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnRestart;
                 @Restart.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnRestart;
+                @Dash.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_PlayerMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -250,6 +276,9 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 @Restart.started += instance.OnRestart;
                 @Restart.performed += instance.OnRestart;
                 @Restart.canceled += instance.OnRestart;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -260,5 +289,6 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnRestart(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

@@ -13,6 +13,10 @@ public class Movement : MonoBehaviour
     public float Speed = 8;
     public float JumpSpeed = 15f;
 
+    public bool _dash;
+    public float _dashSpeed = 100;
+    public float _dashCount = 1;
+
     CapsuleCollider2D _capsule;
     Rigidbody2D _rb;
     LayerMask _collisionLayers = ~(1 << 8);
@@ -22,6 +26,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        _dashCount = 1;
         _capsule = GetComponent<CapsuleCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -32,6 +37,14 @@ public class Movement : MonoBehaviour
             Jumping = true;
             Grounded = false;
         }
+    }
+    public void Dash()
+    {
+        if(_dashCount > 0)
+        {
+            _dash = true;
+        }
+
     }
     public void Move(float input)
     {
@@ -51,8 +64,25 @@ public class Movement : MonoBehaviour
             VerticalVelocity = _rb.velocity.y;
         }
 
+        if (_dash)
+        {
+            HorizontalVelocity = transform.localScale.x * _dashSpeed;
+            _dashCount = 0;
+            //Debug.Log(HorizontalVelocity);
+            StartCoroutine(Dashing());
+        }
+
+
         _rb.velocity = new Vector2(HorizontalVelocity, VerticalVelocity);
     }
+
+    IEnumerator Dashing()
+    {
+        yield return new WaitForSeconds(.2f);
+        _dash = false;
+        _dashCount = 1;
+    }
+
     bool CheckGrounded()
     {
         Vector2 pos = (Vector2)transform.position + _capsule.offset;
