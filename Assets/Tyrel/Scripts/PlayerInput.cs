@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour
         _playerInput = new InputController();
         _playerInput.PlayerMap.Jump.performed += c => _movement.Jump();
         _playerInput.PlayerMap.Pause.performed += c => _gameManager.PauseGame();
+        _playerInput.PlayerMap.Restart.performed += c => _gameManager.Restart();
         _playerInput.Enable();
 
     }

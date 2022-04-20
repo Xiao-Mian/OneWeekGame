@@ -53,6 +53,15 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""81694526-f429-4de5-9b7b-07642cb6c839"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -110,6 +119,17 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84a7681f-8744-45c8-9cf0-aca81bd507b9"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -121,6 +141,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         m_PlayerMap_Jump = m_PlayerMap.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMap_Move = m_PlayerMap.FindAction("Move", throwIfNotFound: true);
         m_PlayerMap_Pause = m_PlayerMap.FindAction("Pause", throwIfNotFound: true);
+        m_PlayerMap_Restart = m_PlayerMap.FindAction("Restart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,6 +204,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMap_Jump;
     private readonly InputAction m_PlayerMap_Move;
     private readonly InputAction m_PlayerMap_Pause;
+    private readonly InputAction m_PlayerMap_Restart;
     public struct PlayerMapActions
     {
         private @InputController m_Wrapper;
@@ -190,6 +212,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerMap_Jump;
         public InputAction @Move => m_Wrapper.m_PlayerMap_Move;
         public InputAction @Pause => m_Wrapper.m_PlayerMap_Pause;
+        public InputAction @Restart => m_Wrapper.m_PlayerMap_Restart;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -208,6 +231,9 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnPause;
+                @Restart.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnRestart;
             }
             m_Wrapper.m_PlayerMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -221,6 +247,9 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
             }
         }
     }
@@ -230,5 +259,6 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
     }
 }
