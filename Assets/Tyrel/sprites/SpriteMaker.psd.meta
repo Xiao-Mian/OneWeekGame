@@ -49,7 +49,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -464,7 +464,7 @@ TextureImporter:
     nameFileIdTable:
       BlockCornerL: 2108996901
       Spikes: 2112507650
-      SpriteMaker_12: -915592772
+      TopGrass1: 1452600820
       SpriteMaker_14: -1640987603
       BlockSideR: -2096283444
       BlockCornerR: -1618751157
@@ -477,7 +477,7 @@ TextureImporter:
       SpriteMaker_13: -2092033914
       TopGrass4: 2086313148
       BlockSideL: -426142008
-      TopGrass1: 1452600820
+      SpriteMaker_12: -915592772
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 1

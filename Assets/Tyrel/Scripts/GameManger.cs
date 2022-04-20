@@ -20,7 +20,7 @@ public class GameManger : MonoBehaviour
 
     
 
-    public void PauseGame()
+    public void PauseGame()   
     {
         Time.timeScale = 0;
         _menu.SetActive(true);
