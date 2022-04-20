@@ -6,14 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class Win : MonoBehaviour
 {
-    public Text _youWin;
+
+    public GameObject _winCanvas;
     public Timer _timer;
 
     // Start is called before the first frame update
     void Start()
     {
+        _winCanvas.SetActive(false);
         
-        _youWin.enabled = false;
         Time.timeScale = 1;
     }
 
@@ -28,21 +29,11 @@ public class Win : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             _timer.EndTimer();
-            _youWin.enabled = true;
+            _winCanvas.SetActive(true);
+
             
-            StartCoroutine(Restart());
         }
     }
 
-
-    IEnumerator Restart()
-    {
-        yield return  new WaitForSeconds(2f);
-        Time.timeScale = 1;
-        
-        SceneManager.LoadScene(1);
-
-        
-    }
 
 }

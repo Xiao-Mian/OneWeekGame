@@ -7,13 +7,15 @@ public class GameManger : MonoBehaviour
 {
 
     public GameObject _menu;
-
+    public GameObject _options;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
         _menu.SetActive(false);
+        _options.SetActive(false);
     }
 
     
@@ -35,6 +37,18 @@ public class GameManger : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+    
+    public void Options()
+    {
+        _options.SetActive(true);
+        _menu.SetActive(false);
+    }
+
+    public void Menu()
+    {
+        _options.SetActive(false);
+        _menu.SetActive(true);
     }
 
     public void ExitGame()

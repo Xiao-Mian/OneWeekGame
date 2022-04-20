@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     public static Timer instance;
 
     public Text _timeCounter;
+    public Text _finalTime;
 
     private TimeSpan _timePlaying;
     private bool _timerGoing;
@@ -23,7 +24,7 @@ public class Timer : MonoBehaviour
     
     void Start()
     {
-        _timeCounter.text = "00:00:00";
+        _timeCounter.text = "00:00.00";
         _timerGoing = false;
 
         BeginTimer();
@@ -44,6 +45,7 @@ public class Timer : MonoBehaviour
     {
         
         _timerGoing = false;
+        _finalTime.text = _timeCounter.text;
     }
 
     IEnumerator UpdateTimer()
