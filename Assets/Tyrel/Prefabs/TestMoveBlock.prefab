@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 2654224669360951563}
   - component: {fileID: 1057572720649172073}
   - component: {fileID: 5415913773379104326}
-  m_Layer: 0
-  m_Name: Untitled-1
+  - component: {fileID: 1719310182790898078}
+  m_Layer: 6
+  m_Name: TestMoveBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2654224669360951563
 Transform:
@@ -111,3 +112,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.2, y: 3.2}
   m_EdgeRadius: 0
+--- !u!114 &1719310182790898078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9010324766578723662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9cfac9a63bfe348b5cd7d8f938d52b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0
+  _startingPoint: 0
+  points: []
