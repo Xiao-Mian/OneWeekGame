@@ -17,6 +17,7 @@ public class PlayerInput : MonoBehaviour
         _playerInput.PlayerMap.Jump.performed += c => _movement.Jump();
         _playerInput.PlayerMap.Pause.performed += c => _gameManager.PauseGame();
         _playerInput.PlayerMap.Restart.performed += c => _gameManager.Restart();
+        _playerInput.PlayerMap.Dash.performed += c => _movement.Dash();
         _playerInput.Enable();
 
     }

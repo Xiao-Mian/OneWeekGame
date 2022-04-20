@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Movement))]
-[RequireComponent(typeof(Animator))]
+
 public class PlayerAnimationControl : MonoBehaviour
 {
     Movement _movement;
@@ -16,6 +15,13 @@ public class PlayerAnimationControl : MonoBehaviour
     {
         bool run = _movement.Grounded && _movement.HorizontalVelocity != 0;
         _anim.SetBool("Running", run);
+
+        if (_movement._dash)
+        {
+            _anim.SetBool("Dash", true);
+        }
+        else
+            _anim.SetBool("Dash", false);
 
         if (_movement.HorizontalVelocity > 0)
         {
