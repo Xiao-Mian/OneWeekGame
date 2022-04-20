@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 2654224669360951563}
   - component: {fileID: 1057572720649172073}
   - component: {fileID: 5415913773379104326}
-  - component: {fileID: 7460534553008978856}
   m_Layer: 0
-  m_Name: TestDeathBlock
+  m_Name: Block_CornerL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 467f56aaed2242f4fbb5a37c5b092054, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 2108996901, guid: 4e1d37d9fce10bc4d9f9132bdad0a745, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,15 +111,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.2, y: 3.2}
   m_EdgeRadius: 0
---- !u!114 &7460534553008978856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9010324766578723662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f79bb5631bc4a84baf6901fcb06cad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
