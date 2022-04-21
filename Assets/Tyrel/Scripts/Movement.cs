@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     public bool _dash;
     public float _dashSpeed = 100;
     public float _dashCount = 1;
+    public float _jumpCount = 1;
 
     CapsuleCollider2D _capsule;
     Rigidbody2D _rb;
@@ -32,7 +33,7 @@ public class Movement : MonoBehaviour
     }
     public void Jump()
     {
-        if (Grounded)
+        if (Grounded || _jumpCount > 0)
         {
             Jumping = true;
             Grounded = false;
@@ -57,11 +58,13 @@ public class Movement : MonoBehaviour
         if (Jumping)
         {
             VerticalVelocity = JumpSpeed;
+            _jumpCount -= 1;
             Jumping = false;
         }
         else
         {
             VerticalVelocity = _rb.velocity.y;
+            
         }
 
         if (_dash)
@@ -72,6 +75,11 @@ public class Movement : MonoBehaviour
             StartCoroutine(Dashing());
         }
 
+
+        if (Grounded)
+        {
+            _jumpCount = 1;
+        }
 
         _rb.velocity = new Vector2(HorizontalVelocity, VerticalVelocity);
     }
