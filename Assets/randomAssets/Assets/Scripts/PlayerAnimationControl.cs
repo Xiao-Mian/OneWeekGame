@@ -13,10 +13,13 @@ public class PlayerAnimationControl : MonoBehaviour
     }
     void Update()
     {
-        bool run = _movement.Grounded && _movement.HorizontalVelocity != 0;
-        _anim.SetBool("Running", run);
-
-        _anim.SetBool("Dash", _movement._dash);
+        if (!_movement.isDashing)
+        {
+            bool run = _movement.Grounded && _movement.HorizontalVelocity != 0;
+            _anim.SetBool("Running", run);
+        }
+        
+        _anim.SetBool("Dash", _movement.isDashing);
 
         if (_movement.HorizontalVelocity > 0)
         {
@@ -32,7 +35,7 @@ public class PlayerAnimationControl : MonoBehaviour
         float time = 1-(_movement.VerticalVelocity+12)/24;
         time = Mathf.Clamp(time, 0, 1);
 
-        if (!_movement.Grounded)
-            _anim.Play("Jump",0, time);
+        if (!_movement.Grounded && !_movement._dashing)
+            _anim.Play("Jump 0",0, time);
     }
 }

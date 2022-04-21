@@ -29,6 +29,7 @@ public class Win : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             _timer.EndTimer();
+            _timer.UpdateTime();
             _winCanvas.SetActive(true);
 
             

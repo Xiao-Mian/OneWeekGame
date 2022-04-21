@@ -10,11 +10,16 @@ public class Timer : MonoBehaviour
 
     public Text _timeCounter;
     public Text _finalTime;
+    public Text _fastestTime;
+
 
     private TimeSpan _timePlaying;
+    TimeSpan _finalFastestTime;
     private bool _timerGoing;
 
     private float _elapsedTime;
+
+
 
     public void Awake()
     {
@@ -26,12 +31,18 @@ public class Timer : MonoBehaviour
     {
         _timeCounter.text = "00:00.00";
         _timerGoing = false;
-
+        
+        _fastestTime.text = PlayerPrefs.GetString("FastestTime", _fastestTime.text);
+        //Reset();
         BeginTimer();
     }
 
-    
-    
+    public void Reset()
+    {
+        
+        _fastestTime.text = null;
+    }
+
 
     public void BeginTimer()
     {
@@ -62,5 +73,25 @@ public class Timer : MonoBehaviour
 
 
     }
+
+    public void UpdateTime()
+    {
+            _finalFastestTime = _timePlaying;
+            string fastestTime = _finalFastestTime.ToString("mm' : 'ss' . 'ff");
+            _fastestTime.text = fastestTime;
+            
+
+            PlayerPrefs.SetString("FastestTime", _fastestTime.text);
+            PlayerPrefs.Save();
+
+    }
+
+    void Update()
+    {
+        
+        
+    }
+
+
 
 }
