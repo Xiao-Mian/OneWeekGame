@@ -389,7 +389,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteMaker_13
+      name: MoneyBag1
       rect:
         serializedVersion: 2
         x: 32
@@ -410,7 +410,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteMaker_14
+      name: MoneyBag2
       rect:
         serializedVersion: 2
         x: 64
@@ -464,20 +464,20 @@ TextureImporter:
     nameFileIdTable:
       BlockCornerL: 2108996901
       Spikes: 2112507650
-      TopGrass1: 1452600820
-      SpriteMaker_14: -1640987603
+      SpriteMaker_12: -915592772
       BlockSideR: -2096283444
+      MoneyBag2: -1640987603
       BlockCornerR: -1618751157
       MovingPlatform: -252915953
       TopGrass2: 1666896772
       BlockFill: -1075838879
+      MoneyBag1: -2092033914
       Spikeball: -2023958561
       TopGrass3: -1353495906
       BlockTop: -238014645
-      SpriteMaker_13: -2092033914
       TopGrass4: 2086313148
       BlockSideL: -426142008
-      SpriteMaker_12: -915592772
+      TopGrass1: 1452600820
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 1
